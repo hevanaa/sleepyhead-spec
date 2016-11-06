@@ -1,0 +1,33 @@
+From: Sergio Durigan Junior <sergiodj@sergiodj.net>
+Date: Mon, 21 Dec 2015 19:33:05 -0500
+Subject: Adapt source code to generate reproducible builds
+
+Due to the use of __TIME__ and __DATE__ macros, it was not possible to
+generate reproducible builds.  This patch removes the use of those
+macros.  It was proposed upstream, and if accepted it will be dropped
+from the package.
+---
+ sleepyhead/mainwindow.cpp | 3 +--
+ 1 file changed, 1 insertion(+), 2 deletions(-)
+
+diff --git a/sleepyhead/mainwindow.cpp b/sleepyhead/mainwindow.cpp
+index 1d4c9b9..0495e28 100644
+--- a/sleepyhead/mainwindow.cpp
++++ b/sleepyhead/mainwindow.cpp
+@@ -162,7 +162,7 @@ MainWindow::MainWindow(QWidget *parent) :
+ 
+     this->setWindowTitle(STR_TR_SleepyHead + QString(" %1 (" + tr("Profile") + ": %2)").arg(version).arg(PREF[STR_GEN_Profile].toString()));
+ 
+-    qDebug() << STR_TR_SleepyHead << VersionString << "built with Qt" << QT_VERSION_STR << "on" << __DATE__ << __TIME__;
++    qDebug() << STR_TR_SleepyHead << VersionString << "built with Qt" << QT_VERSION_STR;
+ 
+ #ifdef BROKEN_OPENGL_BUILD
+     qDebug() << "This build has been created especially for computers with older graphics hardware.\n";
+@@ -1425,7 +1425,6 @@ void MainWindow::on_action_About_triggered()
+                 "<table width=100%><tr><td>"
+                 "<p><h1>" + STR_TR_SleepyHead +
+                 QString(" %1</h1></p><font color=black><p>").arg(STR_TR_AppVersion) +
+-                tr("Build Date: %1 %2").arg(__DATE__).arg(__TIME__) +
+                 QString("<br/>%1<br/>").arg(gitrev) +
+                 tr("Graphics Engine: %1").arg(getGraphicsEngine())+
+                 "<br/>" +

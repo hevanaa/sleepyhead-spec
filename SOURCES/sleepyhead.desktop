@@ -1,0 +1,10 @@
+[Desktop Entry]
+Type=Application
+Exec=sleepyhead
+Name=SleepyHead
+GenericName=Sleep tracking software for monitoring CPAP treatment
+StartupNotify=true
+Icon=sleepyhead
+Terminal=false
+Categories=Science;MedicalSoftware;
+

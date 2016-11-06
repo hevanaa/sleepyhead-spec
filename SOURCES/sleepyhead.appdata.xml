@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Copyright 2011-2016 Mark Watkins. Contact: https://sleepyhead.jedimark.net/ -->
+<application>
+ <id type="desktop">sleepyhead.desktop</id>
+ <metadata_license>CC-BY-SA</metadata_license>
+ <project_license>GPL-3</project_license>
+ <name>SleepyHead</name>
+ <summary>Sleep tracking software for monitoring CPAP treatment</summary>
+ <summary xml:lang="sv">Program för analysering av sömndata vid behandling med CPAP</summary>
+ <summary xml:lang="fi">Ohjelman avulla pystyy analysoimaan CPAP-laitteesta saadut unitiedot</summary>
+ <translation type="gettext">sleepyhead</translation>
+ <description>
+    <p>SleepyHead is a cross-platform desktop application for reviewing and 
+    exploring data produced by CPAP and related devices, which are used in 
+    the treatment of sleep apnea.</p>
+    <p xml:lang="sv">SleepyHead är en plattformsoberoende skrivbordsapplikation med vilken 
+    man kan visa och analysera data från CPAP-apparater, som används vid 
+    behandling av sömnapné.</p>
+    <p xml:lang="fi">SleepyHead on alustariippumaton työpöytäsovellus käytetty uniapnean yhteydessä
+    CPAP-laitteiden tiedon analysointiin.</p>
+    <p>SleepyHead was created by the Australian software developer and fellow 
+    "hose head" Mark Watkins (aka Jedimark), after discovering how difficult it 
+    is to get decent access to CPAP data, and the limited options provided by 
+    the commercial sector.</p>
+    <p xml:lang="sv">SleepyHead är utvecklat av den australiensiske programmeraren Mark Watkins 
+    (Jedimark), efter att han märkt hur svårt det var att komma åt data från 
+    CPAP-apparater och det begränsade utbudet från kommersiella aktörer.</p>
+    <p xml:lang="fi">SleepyHeadin on kehittänyt australialainen kehittäjä Mark Watkins
+    (Jedimark) hänen havaittuaan että CPAP-laitteiden analysointi on vaikea ja 
+    kaupallinen tarjonta on rajattu.</p>
+   <p>Currently supported CPAP devices: </p>
+   <p xml:lang="sv">Följande CPAP-apparater stöds: </p>
+   <p xml:lang="fi">Seuraavat CPAP-laitteet on tuettu: </p>
+  <ul>
+    <li>Philips Respironics 450P models and above (lesser model numbers are not data capable), 50 and 60 series BiPAP models, 950/960 BiPAP AutoSV, 1060 BiPAP S/T, DreamStation, CPAP/BiPAP "family0" models (Not ASV yet)</li>
+    <li xml:lang="sv">Philips Respironics 450P och nyare (äldre modeller stöder inte data), 50- och 60-seriens BiPAP, 950/960 BiPAP AutoSV, 1060 BiPAP S/T, DreamStation, CPAP/BiPAP "family0"-modeller (ej ASV)</li>
+    <li xml:lang="fi">Philips Respironics 450P mallit ja uudemmat (vanhemmat mallit ei sisällä tietoja), 50- ja 60-sarjan BiPAP, 950/960 BiPAP AutoSV, 1060 BiPAP S/T, DreamStation, CPAP/BiPAP "family0"-mallit (ei ASV)</li>
+    <li>ResMed S9 families (not the Escape models, as they are not data capable), Elite, AutoSet, VPAP, VPAP auto, VPAP adapt, AirSense 10 including "For Her" models, AirCurve 10</li>
+    <li xml:lang="sv">ResMed S9-familjen (utom Escape, för den stöder inte data), Elite, AutoSet, VPAP, VPAP auto, VPAP adapt, AirSense 10 och "For Her"-modeller, AirCurve 10</li>
+    <li xml:lang="fi">ResMed S9-perheen laitteet (paitsi Escape mallit, koska eivät sisällä tietoja), Elite, AutoSet, VPAP, VPAP auto, VPAP adapt, AirSense 10 mukaanlukien "For Her" mallit, AirCurve 10</li>
+    <li>Fisher &amp; Paykel Icon (It's still a work in progress)</li>
+    <li xml:lang="sv">Fisher &amp; Paykel Icon (detta är ett pågående arbete)</li>
+    <li xml:lang="fi">Fisher &amp; Paykel Icon (tämä on vielä työn alla)</li>
+    <li>DeVilbiss Intellipap CPAP/Auto DV53/DV54 (These machines don't store flow waveforms)</li>
+    <li xml:lang="sv">DeVilbiss Intellipap CPAP/Auto DV53/DV54 (dessa maskiner lagrar inte vågformer)</li>
+    <li xml:lang="fi">DeVilbiss Intellipap CPAP/Auto DV53/DV54 (laitteet eivät tallenna aaltomuotoja)</li>
+    <li>Weinmann SOMNOsoft2 (Balance machines support is currently on hold)</li>
+    <li xml:lang="sv">Weinmann SOMNOsoft2 (Balance-maskiner är inte ännu stödda)</li>
+    <li xml:lang="fi">Weinmann SOMNOsoft2 (Balance-laitteille ei ole vielä tukea)</li>
+  </ul>
+  <p>Currently supported Oximeter devices: </p>
+  <p xml:lang="sv">Följande oximetrar stöds: </p>
+  <p xml:lang="fi">Seuraavat oksimetri-laitteet on tuettu: </p>
+  <ul>
+    <li>Direct (USB) import from Contec CMS50D+/E/F/I oximeters (and clones), including Firmware 3.7 and greater, plus support for SpO2Review/Assist softwares .SpoR/.spo2 files</li>
+    <li xml:lang="sv">Direktimport (USB) från Contec CMS50D+/E/F/I oximetrar (och kloner) från Firmware 3.7 och nyare, plus support för SpO2Review/Assist .SpoR/.spo2 programfiler</li>
+    <li xml:lang="fi">Suora tuonti (USB) Contec CMS50D+/E/F/I oximetreistä (ja kloonit), Firmware 3.7 ja uudemmat versiot. Tuki myös SpO2Review/Assist ohjelman .SpoR/.spo2 tiedostoille</li>
+    <li>ResMed S9's oximeter attachment automatically imports along with the rest of the CPAP data</li>
+    <li xml:lang="sv">ResMed S9 oximetertillägg importeras automatiskt med resten av CPAP-data</li>
+    <li xml:lang="fi">ResMed S9-laitteen oximetrin (lisävaruste) tiedot tuodaan automaattisesti CPAP-tietojen mukana</li>
+    <li>Support for ChoiceMMed MD300W1 oximeter .dat file</li>
+    <li xml:lang="sv">ChoiceMMed MD300W1 oximeter .dat-filer</li>
+    <li xml:lang="fi">ChoiceMMed MD300W1 oximetrin .dat tiedostot</li>
+  </ul>
+ </description>
+ <screenshots>
+    <screenshot type="default" width="1024" height="719">http://sleepyhead.sourceforge.net/wiki/images/c/c2/DailyData_zpsd4876708.jpg</screenshot>
+ </screenshots>
+  <keywords>
+  <keyword>Apnea</keyword>
+  <keyword>CPAP</keyword>
+  <keyword>APAP</keyword>
+  <keyword>Oximeter</keyword>
+  <keyword>Oximetry</keyword>
+  <keyword>Sleep</keyword>
+  <keyword>AHI</keyword>
+ </keywords>
+ <url type="homepage">https://sleepyhead.jedimark.net/</url>
+ <updatecontact>johan.heikkila@gmail.com</updatecontact>
+</application>
