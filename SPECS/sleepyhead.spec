@@ -1,6 +1,6 @@
 Name:           sleepyhead
 Version:        1.0.0
-Release:        0.10.20160703git0e04bd9%{?dist}
+Release:        0.11.20160703git0e04bd9%{?dist}
 Summary:        Sleep tracking software for monitoring CPAP treatment
 Group:          Applications/Engineering
 License:        GPLv3
@@ -27,6 +27,8 @@ Patch5:         0005-Added-additional-icons-to-ico-file.patch
 Patch6:         0006-Updated-Swedish-translation.patch
 # Proposed to upstream, waiting for approval
 Patch7:         0007-Updated-Finnish-translation.patch
+# Workaround for Moc that seems broken in QT 5.7 and can't detect QT version
+Patch8:         0008-Workaround-for-moc-not-detecting-qt-version.patch
 
 # Upstream provides none of the following files
 Source1:        sleepyhead.desktop
@@ -81,7 +83,7 @@ git am %{PATCH0}
 %if 0%{?rhel}
 git am %{PATCH1}
 %endif
-git am %{PATCH2} %{PATCH3} %{PATCH4} %{PATCH5} %{PATCH6} %{PATCH7}
+git am %{PATCH2} %{PATCH3} %{PATCH4} %{PATCH5} %{PATCH6} %{PATCH7} %{PATCH8}
 
 
 %build
@@ -147,6 +149,8 @@ gtk-update-icon-cache %{_datadir}/icons/hicolor &>/dev/null || :
 
 
 %changelog
+* Sun Nov 27 2016 Johan Heikkila <johan.heikkila@gmail.com> - 1.0.0-0.11.20160703git0e04bd9
+- Workaround to build on Fedora 25 and qt 5.7
 * Sat Jul 23 2016 Johan Heikkila <johan.heikkila@gmail.com> - 1.0.0-0.10.20160703git0e04bd9
 - Changed build script to also build on Epel
 * Sat Jul 23 2016 Johan Heikkila <johan.heikkila@gmail.com> - 1.0.0-0.9.20160703git0e04bd9
