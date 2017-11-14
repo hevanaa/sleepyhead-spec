@@ -1,6 +1,8 @@
+%global debug_package %{nil}
+
 Name:           sleepyhead
 Version:        1.0.0
-Release:        0.11.20160703git0e04bd9%{?dist}
+Release:        0.13.20160426git0e04bd9%{?dist}
 Summary:        Sleep tracking software for monitoring CPAP treatment
 Group:          Applications/Engineering
 License:        GPLv3
@@ -29,6 +31,8 @@ Patch6:         0006-Updated-Swedish-translation.patch
 Patch7:         0007-Updated-Finnish-translation.patch
 # Workaround for Moc that seems broken in QT 5.7 and can't detect QT version
 Patch8:         0008-Workaround-for-moc-not-detecting-qt-version.patch
+# Fix compilation error with Qt 5.9
+Patch9:         0009-Fix-compilation-error-with-Qt-5.9.patch
 
 # Upstream provides none of the following files
 Source1:        sleepyhead.desktop
@@ -74,8 +78,8 @@ Oximeter Adapter), PRS1 Oximeter attachment, ChoiceMMed MD300W1 Oximeter.
 %setup -q -n sleepyhead-code
 # Create a git repo within the expanded tarball.
 git init
-git config user.email "..."
-git config user.name "..."
+git config user.email "build"
+git config user.name "build"
 # apply patches
 %if 0%{?fedora}
 git am %{PATCH0}
@@ -83,7 +87,7 @@ git am %{PATCH0}
 %if 0%{?rhel}
 git am %{PATCH1}
 %endif
-git am %{PATCH2} %{PATCH3} %{PATCH4} %{PATCH5} %{PATCH6} %{PATCH7} %{PATCH8}
+git am %{PATCH2} %{PATCH3} %{PATCH4} %{PATCH5} %{PATCH6} %{PATCH7} %{PATCH8} %{PATCH9}
 
 
 %build
@@ -149,6 +153,10 @@ gtk-update-icon-cache %{_datadir}/icons/hicolor &>/dev/null || :
 
 
 %changelog
+* Wed Nov 15 2017 Johan Heikkila <johan.heikkila@gmail.com> - 1.0.0-0.13.20160426git0e04bd9
+- Fixed build on Fedora 27
+* Fri Jul 07 2017 Johan Heikkila <johan.heikkila@gmail.com> - 1.0.0-0.12.20160426git0e04bd9
+- Fixed build on Fedora 26 and corrected the snapshot date
 * Sun Nov 27 2016 Johan Heikkila <johan.heikkila@gmail.com> - 1.0.0-0.11.20160703git0e04bd9
 - Workaround to build on Fedora 25 and qt 5.7
 * Sat Jul 23 2016 Johan Heikkila <johan.heikkila@gmail.com> - 1.0.0-0.10.20160703git0e04bd9
