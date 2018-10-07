@@ -1,8 +1,8 @@
 %global debug_package %{nil}
 
 Name:           sleepyhead
-Version:        1.0.0
-Release:        0.13.20160426git0e04bd9%{?dist}
+Version:        1.1.0
+Release:        0.1.20180614git8e6968f%{?dist}
 Summary:        Sleep tracking software for monitoring CPAP treatment
 Group:          Applications/Engineering
 License:        GPLv3
@@ -13,34 +13,14 @@ URL:            https://sleepyhead.jedimark.net/
 # tar cvjf %{name}-%{version}.tar.bz2 sleepyhead-code/
 Source0:        %{name}-%{version}.tar.bz2
 
-# Upstream ships third party libraries
-Patch0:         0001-Fedora-ships-with-quazip.patch
-# There	is no qt5 of quazip in	Epel
-Patch1:         0001-Epel-ships-with-quazip.patch
-# Upstream notified by Debian and patch adapted
-Patch2:         0002-Adapt-source-code-to-generate-reproducible-builds.patch
-# This has been proposed informally to upstream
-Patch3:         0003-Added-translations-path-for-linux.patch
-# Translations ongoing
-Patch4:         0004-Greek-and-Arabic-translations-not-yet-available.patch
-# Informally proposed to upstream
-Patch5:         0005-Added-additional-icons-to-ico-file.patch
-# Proposed to upstream, waiting for approval
-Patch6:         0006-Updated-Swedish-translation.patch
-# Proposed to upstream, waiting for approval
-Patch7:         0007-Updated-Finnish-translation.patch
-# Workaround for Moc that seems broken in QT 5.7 and can't detect QT version
-Patch8:         0008-Workaround-for-moc-not-detecting-qt-version.patch
-# Fix compilation error with Qt 5.9
-Patch9:         0009-Fix-compilation-error-with-Qt-5.9.patch
-
 # Upstream provides none of the following files
 Source1:        sleepyhead.desktop
 Source2:        sleepyhead.appdata.xml
 Source3:        sleepyhead.1
 
-BuildRequires:  qt5-qtwebkit-devel >= 5.5.0
-BuildRequires:  qt5-qtserialport-devel >= 5.5.0
+BuildRequires:  qt5-qtwebkit-devel >= 5.9.0
+BuildRequires:  qt5-qtserialport-devel >= 5.9.0
+BuildRequires:  qt5-qttools-devel >= 5.9.0
 %if 0%{?fedora}
 BuildRequires:  quazip-qt5-devel
 %endif
@@ -55,13 +35,12 @@ BuildRequires:  glibc-devel
 BuildRequires:  libstdc++-devel
 
 BuildRequires:  qt5-linguist
-BuildRequires:  git
 BuildRequires:  libappstream-glib
 BuildRequires:  desktop-file-utils
 BuildRequires:  icoutils
 
-Requires:       qt5-qtwebkit >= 5.5.0
-Requires:       qt5-qtserialport >= 5.5.0
+Requires:       qt5-qtwebkit >= 5.9.0
+Requires:       qt5-qtserialport >= 5.9.0
 
 %description
 Review and explore data produced by CPAP and related machines. Currently
@@ -76,28 +55,13 @@ Oximeter Adapter), PRS1 Oximeter attachment, ChoiceMMed MD300W1 Oximeter.
 
 %prep
 %setup -q -n sleepyhead-code
-# Create a git repo within the expanded tarball.
-git init
-git config user.email "build"
-git config user.name "build"
-# apply patches
-%if 0%{?fedora}
-git am %{PATCH0}
-%endif
-%if 0%{?rhel}
-git am %{PATCH1}
-%endif
-git am %{PATCH2} %{PATCH3} %{PATCH4} %{PATCH5} %{PATCH6} %{PATCH7} %{PATCH8} %{PATCH9}
-
 
 %build
 qmake-qt5
 make %{?_smp_mflags}
-lrelease-qt5 SleepyHeadQT.pro
 
 # Convert ico file to separate freedesktop style icons
 icotool -x sleepyhead/icons/bob-v3.0.ico -o sleepyhead/icons/
-
 
 %install
 install -Dm 0755 sleepyhead/SleepyHead $RPM_BUILD_ROOT%{_bindir}/sleepyhead
@@ -112,8 +76,8 @@ validate-relax --nonet %{buildroot}%{_datadir}/appdata/sleepyhead.appdata.xml
 install -Dpm 0644 %{SOURCE3} %{buildroot}%{_mandir}/man1/sleepyhead.1
 
 # install icons
-num=( 1 2 3 4 5 6 7 8 )
-pxl=( 256 128 64 48 32 24 22 16 )
+num=( 1 2 3 4 5 )
+pxl=( 16 32 48 64 128 )
 for (( i=0; i<${#num[@]}; i++ )); do
 install -Dpm 0644                                                             \
 sleepyhead/icons/bob-v3.0_${num[$i]}_${pxl[$i]}x${pxl[$i]}x32.png             \
@@ -122,7 +86,7 @@ done
 
 install -d %{buildroot}%{_datadir}/sleepyhead/translations
 install -pm 0644 -t                                                          \
-%{buildroot}%{_datadir}/sleepyhead/translations/ Translations/*.qm
+%{buildroot}%{_datadir}/sleepyhead/translations/ sleepyhead/translations/*.qm
 
 
 %post
@@ -153,6 +117,8 @@ gtk-update-icon-cache %{_datadir}/icons/hicolor &>/dev/null || :
 
 
 %changelog
+* Sun Oct 7 2018 Johan Heikkila <johan.heikkila@gmail.com> - 1.1.0-0.1.20180614git8e6968f
+- Updated to 1.1.0-unstable-2
 * Wed Nov 15 2017 Johan Heikkila <johan.heikkila@gmail.com> - 1.0.0-0.13.20160426git0e04bd9
 - Fixed build on Fedora 27
 * Fri Jul 07 2017 Johan Heikkila <johan.heikkila@gmail.com> - 1.0.0-0.12.20160426git0e04bd9
